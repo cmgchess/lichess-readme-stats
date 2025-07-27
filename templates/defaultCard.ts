@@ -88,8 +88,8 @@ const renderHeader = (
 const styles = (colors: ThemeColors): string => {
   return `
       <style>
-        .title { font: bold 1.1em 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.title}; }
-        .username { font: 400 1.1em 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.header}; }
+        .title { font: bold 15.4px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.title}; }
+        .username { font: 400 15.4px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.header}; }
         .rating { font: 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.text}; }
         .info { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.muted}; }
       </style>`;
