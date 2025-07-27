@@ -1,0 +1,28 @@
+{
+  "name": "lichess-readme-stats",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "vercel dev",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lichess",
+    "readme",
+    "chess",
+    "card",
+    "svg"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@lichess-org/types": "^2.0.67",
+    "typescript": "^5.0.0",
+    "vercel": "^44.6.3"
+  },
+  "dependencies": {
+    "axios": "^1.11.0"
+  }
+}
