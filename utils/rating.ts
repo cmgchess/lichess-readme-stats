@@ -9,7 +9,8 @@ const firstRow: PerfType[] = [
   PerfType.RAPID,
   PerfType.CLASSICAL,
 ];
-const secondRow: Set<PerfType> = new Set<PerfType>([
+
+const secondRowPerfs: PerfType[] = [
   PerfType.CORRESPONDENCE,
   PerfType.ULTRABULLET,
   PerfType.CRAZYHOUSE,
@@ -20,7 +21,9 @@ const secondRow: Set<PerfType> = new Set<PerfType>([
   PerfType.ATOMIC,
   PerfType.HORDE,
   PerfType.RACING_KINGS,
-]);
+];
+
+const secondRow: Set<PerfType> = new Set<PerfType>(secondRowPerfs);
 
 const totalTimeRoughEstimationMap: Partial<Record<PerfType, number>> = {
   [PerfType.ULTRABULLET]: 25 * 100,
@@ -57,7 +60,7 @@ export const getSecondRowPerfs = (
     })
     .slice(0, nb);
 
-  return filteredPerfs as [PerfType, Perf][];
+  return padPerfs(filteredPerfs as [PerfType, Perf][], nb, secondRowPerfs);
 };
 
 export const getFormattedRatings = (
@@ -69,3 +72,36 @@ export const getFormattedRatings = (
     if (perf.rd >= provisionalDeviation) return [key, `${perf.rating}?`];
     return [key, `${perf.rating}`];
   });
+
+const padPerfs = (
+  result: [PerfType, Perf][],
+  targetLength: number,
+  availablePerfs: PerfType[]
+): [PerfType, Perf][] => {
+  const paddingNeeded = targetLength - result.length;
+  if (paddingNeeded <= 0) return result;
+
+  const existingTypes = new Set(result.map(([type]) => type));
+
+  for (
+    let i = 0;
+    i < availablePerfs.length && result.length < targetLength;
+    i++
+  ) {
+    const paddingType = availablePerfs[i];
+    if (!existingTypes.has(paddingType)) {
+      result.push([
+        paddingType,
+        {
+          games: 0,
+          rating: 1500,
+          rd: 500,
+          prog: 0,
+          prov: true,
+        },
+      ]);
+    }
+  }
+
+  return result;
+};
